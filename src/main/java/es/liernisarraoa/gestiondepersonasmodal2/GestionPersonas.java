@@ -1,5 +1,7 @@
 package es.liernisarraoa.gestiondepersonasmodal2;
 
+import es.liernisarraoa.gestiondepersonasmodal2.Controladores.AniadirPersonaController;
+import es.liernisarraoa.gestiondepersonasmodal2.Controladores.HelloController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

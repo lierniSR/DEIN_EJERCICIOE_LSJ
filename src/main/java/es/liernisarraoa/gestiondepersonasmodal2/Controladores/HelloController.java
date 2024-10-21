@@ -1,14 +1,18 @@
 package es.liernisarraoa.gestiondepersonasmodal2.Controladores;
 
-import es.liernisarraoa.gestiondepersonasmodal2.ModalAniadir;
+import es.liernisarraoa.gestiondepersonasmodal2.GestionPersonas;
 import es.liernisarraoa.gestiondepersonasmodal2.Modelo.Personas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -16,8 +20,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-    private String errores = "";
-
+    private Scene scene;
+    private Stage modal;
     /** Tabla que muestra la lista de personas. */
     @FXML
     private TableView<Personas> tablaPersonas;
@@ -35,12 +39,29 @@ public class HelloController implements Initializable {
     private TableColumn<Personas, Integer> columnaEdad;
 
     public void agregarPersona(ActionEvent actionEvent) throws Exception {
-        //Es para abrir una ventana en modo modal.
-        ModalAniadir modal = new ModalAniadir();
-        Stage scene = new Stage();
-        //Mejor poner la modalidad fuera, es decir en el metodo al que va a llamar a la ventana modal.
-        scene.initModality(Modality.APPLICATION_MODAL);
-        modal.start(scene);
+        //Esto si el controlador necesita hacer algo en la ventana principal
+        // Cargar el FXML de la ventana modal
+        FXMLLoader loader = new FXMLLoader(GestionPersonas.class.getResource("aniadirPersona.fxml"));
+        Parent root = loader.load();
+
+        // Obtener el controlador de la ventana modal
+        AniadirPersonaController modalControlador = loader.getController();
+
+        // Pasar el TableView al controlador de la ventana modal
+        modalControlador.setTablaPersonas(this.tablaPersonas);
+
+        // Crear y mostrar la ventana modal
+        modal = new Stage();
+        scene = new Scene(root);
+        modal.setScene(scene);
+        modal.initModality(Modality.APPLICATION_MODAL);
+        modal.setTitle("Agregar Persona");
+        modal.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
+        modal.showAndWait();
+
+        //Pasar Scene y Stage al controlador
+        modalControlador.setStage(modal);
+        modalControlador.setScene(scene);
     }
 
     public void modificarPersona(ActionEvent actionEvent) {
