@@ -1,22 +1,22 @@
 package es.liernisarraoa.gestiondepersonasmodal2.Controladores;
 
+import es.liernisarraoa.gestiondepersonasmodal2.ModalAniadir;
 import es.liernisarraoa.gestiondepersonasmodal2.Modelo.Personas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
-    /** Escena principal de la aplicación. */
-    private Scene escenaAplicacion;
+    private String errores = "";
 
     /** Tabla que muestra la lista de personas. */
     @FXML
@@ -34,7 +34,13 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<Personas, Integer> columnaEdad;
 
-    public void agregarPersona(ActionEvent actionEvent) {
+    public void agregarPersona(ActionEvent actionEvent) throws Exception {
+        //Es para abrir una ventana en modo modal.
+        ModalAniadir modal = new ModalAniadir();
+        Stage scene = new Stage();
+        //Mejor poner la modalidad fuera, es decir en el metodo al que va a llamar a la ventana modal.
+        scene.initModality(Modality.APPLICATION_MODAL);
+        modal.start(scene);
     }
 
     public void modificarPersona(ActionEvent actionEvent) {
