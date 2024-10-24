@@ -25,6 +25,7 @@ public class HelloController implements Initializable {
     private Stage modalAniadir;
     private Scene sceneModificar;
     private Stage modalModificar;
+    private Personas p;
     /** Tabla que muestra la lista de personas. */
     @FXML
     private TableView<Personas> tablaPersonas;
@@ -69,18 +70,19 @@ public class HelloController implements Initializable {
         FXMLLoader loader = new FXMLLoader(GestionPersonas.class.getResource("modificarPersona.fxml"));
         Parent root = loader.load();
 
+        p = tablaPersonas.getSelectionModel().getSelectedItem();
         // Obtener el controlador de la ventana modal
         ModificarPersonaController modalControlador = loader.getController();
 
         // Pasar el TableView al controlador de la ventana modal
-        modalControlador.setTablaPersonas(this.tablaPersonas);
+        modalControlador.setP(p);
 
         // Crear y mostrar la ventana modal
         modalModificar = new Stage();
         sceneModificar = new Scene(root);
         modalModificar.setScene(sceneModificar);
         modalModificar.initModality(Modality.APPLICATION_MODAL);
-        modalModificar.setTitle("Agregar Persona");
+        modalModificar.setTitle("Modificar persona");
         modalModificar.getIcons().add(new Image(String.valueOf(GestionPersonas.class.getResource("/Imagenes/agenda.png"))));
         modalModificar.showAndWait();
     }
