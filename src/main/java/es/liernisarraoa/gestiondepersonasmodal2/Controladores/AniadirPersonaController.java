@@ -14,8 +14,6 @@ import javafx.stage.Stage;
 public class AniadirPersonaController {
     private static Personas personaAgregada = null;
     private String errores = "";
-    private Stage modal;
-    private Scene escenaAplicacion;
     private TableView<Personas> tablaPersonas;
 
     @FXML
@@ -92,14 +90,6 @@ public class AniadirPersonaController {
 
     public static Personas getPersonasAgregada(){
         return personaAgregada;
-    }
-
-    public void setScene(Scene scene){
-        escenaAplicacion = scene;
-    }
-
-    public void setStage(Stage stage){
-        modal = stage;
     }
 
     public void setTablaPersonas(TableView<Personas> tabla){

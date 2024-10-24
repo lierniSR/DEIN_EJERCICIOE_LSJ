@@ -1,6 +1,7 @@
 module es.liernisarraoa.gestiondepersonasmodal2 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
     opens es.liernisarraoa.gestiondepersonasmodal2.Modelo to javafx.fxml;
     exports es.liernisarraoa.gestiondepersonasmodal2.Modelo;

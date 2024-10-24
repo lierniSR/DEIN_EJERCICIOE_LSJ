@@ -76,6 +76,7 @@ public class HelloController implements Initializable {
 
         // Pasar el TableView al controlador de la ventana modal
         modalControlador.setP(p);
+        modalControlador.setTabla(tablaPersonas);
 
         // Crear y mostrar la ventana modal
         modalModificar = new Stage();
