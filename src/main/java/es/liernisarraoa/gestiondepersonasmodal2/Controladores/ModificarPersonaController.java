@@ -6,18 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import javax.swing.text.Element;
-import javax.swing.text.html.ImageView;
 
 
 public class ModificarPersonaController {
     private Personas p;
     private String errores = "";
     private TableView<Personas> tabla;
-    private ImageView iconView;
 
     @FXML
     private TextField nombreTextField;
@@ -86,6 +81,8 @@ public class ModificarPersonaController {
     }
 
     public void cerrarModal(ActionEvent actionEvent) {
+        tabla.getSelectionModel().clearSelection();
+        ((Stage) nombreTextField.getScene().getWindow()).close();
     }
 
     public void setP(Personas p){
@@ -103,13 +100,5 @@ public class ModificarPersonaController {
             apellidoTextField.setText(p.getApellido());
             edadTextField.setText(String.valueOf(p.getEdad()));
         }
-    }
-
-    public void cargarIcono(){
-        // Cargar la imagen del icono
-        Image icon = new Image("/ruta/a/tu/icono.png"); // Asegúrate de que la ruta sea correcta
-        iconView = new ImageView((Element) icon);
-        iconView.set; // Ajusta el tamaño según tus necesidades
-        iconView.setFitWidth(32);
     }
 }
