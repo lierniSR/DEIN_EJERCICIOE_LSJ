@@ -21,12 +21,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador principal de la aplicación de gestión de personas.
+ * Maneja la interfaz principal y las operaciones sobre la tabla de personas.
+ *
+ * @author Lierni
+ * @version 1.0
+ */
 public class HelloController implements Initializable {
     private Scene sceneAniadir;
     private Stage modalAniadir;
     private Scene sceneModificar;
     private Stage modalModificar;
     private Personas p;
+
     /** Tabla que muestra la lista de personas. */
     @FXML
     private TableView<Personas> tablaPersonas;
@@ -43,6 +51,13 @@ public class HelloController implements Initializable {
     @FXML
     private TableColumn<Personas, Integer> columnaEdad;
 
+    /**
+     * Maneja el evento de agregar una nueva persona.
+     * Abre una ventana modal para introducir los datos de la nueva persona.
+     *
+     * @param actionEvent El evento que desencadena la acción.
+     * @throws Exception Si ocurre algún error al cargar la ventana modal.
+     */
     public void agregarPersona(ActionEvent actionEvent) throws Exception {
         //Esto si el controlador necesita hacer algo en la ventana principal
         // Cargar el FXML de la ventana modal
@@ -65,6 +80,13 @@ public class HelloController implements Initializable {
         modalAniadir.showAndWait();
     }
 
+    /**
+     * Maneja el evento de modificar una persona existente.
+     * Abre una ventana modal para editar los datos de la persona seleccionada.
+     *
+     * @param actionEvent El evento que desencadena la acción.
+     * @throws IOException Si ocurre algún error al cargar la ventana modal.
+     */
     public void modificarPersona(ActionEvent actionEvent) throws IOException {
         //Esto si el controlador necesita hacer algo en la ventana principal
         // Cargar el FXML de la ventana modal
@@ -89,6 +111,12 @@ public class HelloController implements Initializable {
         modalModificar.showAndWait();
     }
 
+    /**
+     * Maneja el evento de eliminar una persona de la tabla.
+     * Elimina la persona seleccionada y muestra una alerta de confirmación.
+     *
+     * @param actionEvent El evento que desencadena la acción.
+     */
     public void eliminarPersona(ActionEvent actionEvent) {
         Personas personaEliminar = tablaPersonas.getSelectionModel().getSelectedItem();
         tablaPersonas.getSelectionModel().clearSelection();
@@ -96,6 +124,9 @@ public class HelloController implements Initializable {
         alertaEliminar();
     }
 
+    /**
+     * Muestra una alerta informando que la persona ha sido eliminada.
+     */
     private void alertaEliminar() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -104,6 +135,13 @@ public class HelloController implements Initializable {
         alert.showAndWait();
     }
 
+    /**
+     * Inicializa el controlador.
+     * Configura la tabla y sus columnas para mostrar la información de las personas.
+     *
+     * @param url La ubicación utilizada para resolver rutas relativas para el objeto raíz.
+     * @param resourceBundle Los recursos utilizados para localizar el objeto raíz.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tablaPersonas.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

@@ -32,19 +32,24 @@
          </BorderPane.margin>
       </TableView>
    </center>
+   <!-- Parte de abajo del BorderPane -->
    <bottom>
+      <!-- HBOX para los botones -->
       <HBox alignment="CENTER" prefHeight="53.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
+            <!-- Boton agregar persona -->
             <Button fx:id="btnAgregarPersona" mnemonicParsing="false" onAction="#agregarPersona" text="Agregar Personas" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
+            <!-- Boton modificar persona -->
             <Button fx:id="btnModificarPersona" mnemonicParsing="false" onAction="#modificarPersona" text="Modificar Persona" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" top="10.0" />
                </HBox.margin>
             </Button>
+            <!-- Boton eliminar persona -->
             <Button fx:id="btnEliminarPersona" mnemonicParsing="false" onAction="#eliminarPersona" text="Eliminar Persona" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets top="10.0" />

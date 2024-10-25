@@ -8,7 +8,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
+/**
+ * Controlador de la ventana modal de modificar persona.
+ *
+ * @author Lierni
+ * @version 1.0
+ */
 public class ModificarPersonaController {
     private Personas p;
     private String errores = "";
@@ -23,6 +28,12 @@ public class ModificarPersonaController {
     @FXML
     private TextField edadTextField;
 
+    /**
+     * Guarda los cambios realizados en la persona.
+     * Verifica los datos ingresados y actualiza la tabla si son válidos.
+     *
+     * @param actionEvent El evento que desencadena esta acción.
+     */
     public void guardarPersona(ActionEvent actionEvent) {
         verificacionPersona();
         if(errores.isEmpty()){
@@ -45,6 +56,9 @@ public class ModificarPersonaController {
         }
     }
 
+    /**
+     * Muestra una alerta de error con los errores de validación.
+     */
     private void alertaError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -53,6 +67,9 @@ public class ModificarPersonaController {
         alert.showAndWait();
     }
 
+    /**
+     * Muestra una alerta informativa cuando se modifica una persona correctamente.
+     */
     private void alertaModificarPersona() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -61,6 +78,10 @@ public class ModificarPersonaController {
         alert.showAndWait();
     }
 
+    /**
+     * Verifica los datos ingresados de la persona.
+     * Comprueba que los campos obligatorios estén llenos y que la edad sea un número válido.
+     */
     private void verificacionPersona() {
         errores = "";
         if (nombreTextField.getText().isEmpty()) {
@@ -80,20 +101,38 @@ public class ModificarPersonaController {
         }
     }
 
+    /**
+     * Cierra la ventana modal de modificación de persona.
+     *
+     * @param actionEvent El evento que desencadena esta acción.
+     */
     public void cerrarModal(ActionEvent actionEvent) {
         tabla.getSelectionModel().clearSelection();
         ((Stage) nombreTextField.getScene().getWindow()).close();
     }
 
+    /**
+     * Establece la persona a modificar y inicializa los campos del formulario.
+     *
+     * @param p La persona a modificar.
+     */
     public void setP(Personas p){
         this.p = p;
         inicializarCampos();
     }
 
+    /**
+     * Establece la referencia a la tabla de personas.
+     *
+     * @param tabla La tabla de personas.
+     */
     public void setTabla(TableView<Personas> tabla){
         this.tabla = tabla;
     }
 
+    /**
+     * Inicializa los campos del formulario con los datos de la persona a modificar.
+     */
     private void inicializarCampos() {
         if(p != null){
             nombreTextField.setText(p.getNombre());

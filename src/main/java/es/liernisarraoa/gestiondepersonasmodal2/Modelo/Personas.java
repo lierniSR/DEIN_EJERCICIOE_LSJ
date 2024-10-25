@@ -1,5 +1,11 @@
 package es.liernisarraoa.gestiondepersonasmodal2.Modelo;
 
+/**
+ * Clase Personas para utilizar como objeto.
+ *
+ * @author Lierni
+ * @version 1.0
+ */
 public class Personas {
     private String nombre;
     private String apellido;

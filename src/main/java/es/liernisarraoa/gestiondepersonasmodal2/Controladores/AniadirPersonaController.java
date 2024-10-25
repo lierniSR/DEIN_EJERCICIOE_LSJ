@@ -3,28 +3,43 @@ package es.liernisarraoa.gestiondepersonasmodal2.Controladores;
 import es.liernisarraoa.gestiondepersonasmodal2.Modelo.Personas;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-
+/**
+ * Controlador de la ventana modal de añadir persona.
+ *
+ * @author Lierni
+ * @version 1.0
+ */
 public class AniadirPersonaController {
+    /** Persona que se está agregando actualmente. */
     private static Personas personaAgregada = null;
+    /** Cadena para almacenar los mensajes de error. */
     private String errores = "";
+    /** Referencia a la tabla de personas en la ventana principal. */
     private TableView<Personas> tablaPersonas;
 
+    /** Campo de texto para el nombre de la persona. */
     @FXML
     private TextField nombreTextField;
 
+    /** Campo de texto para el apellido de la persona. */
     @FXML
     private TextField apellidoTextField;
 
+    /** Campo de texto para la edad de la persona. */
     @FXML
     private TextField edadTextField;
 
+    /**
+     * Guarda la persona introducida en el formulario.
+     * Verifica los datos, crea la persona y la añade a la tabla si es válida.
+     * @param actionEvent El evento que desencadena esta acción.
+     */
     public void guardarPersona(ActionEvent actionEvent) {
         verificacionPersona();
         if(errores.isEmpty()){
@@ -48,6 +63,9 @@ public class AniadirPersonaController {
         }
     }
 
+    /**
+     * Muestra una alerta informando que la persona ha sido añadida correctamente.
+     */
     private void alertaAniadirPersona() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Persona añadida");
@@ -56,6 +74,9 @@ public class AniadirPersonaController {
         alert.showAndWait();
     }
 
+    /**
+     * Muestra una alerta con los errores encontrados durante la validación.
+     */
     private void alertaError() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -64,6 +85,10 @@ public class AniadirPersonaController {
         alert.showAndWait();
     }
 
+    /**
+     * Verifica que los datos introducidos sean válidos.
+     * Almacena los mensajes de error en la variable 'errores'.
+     */
     private void verificacionPersona() {
         errores = "";
         if (nombreTextField.getText().isEmpty()) {
@@ -83,15 +108,27 @@ public class AniadirPersonaController {
         }
     }
 
+    /**
+     * Cierra la ventana modal de añadir persona.
+     * @param actionEvent El evento que desencadena esta acción.
+     */
     public void cerrarModal(ActionEvent actionEvent) {
         personaAgregada = null;
         ((Stage) nombreTextField.getScene().getWindow()).close();
     }
 
+    /**
+     * Obtiene la persona que se ha agregado.
+     * @return La persona agregada o null si no se ha agregado ninguna.
+     */
     public static Personas getPersonasAgregada(){
         return personaAgregada;
     }
 
+    /**
+     * Establece la referencia a la tabla de personas de la ventana principal.
+     * @param tabla La tabla de personas a la que se añadirán las nuevas personas.
+     */
     public void setTablaPersonas(TableView<Personas> tabla){
         this.tablaPersonas = tabla;
     }
