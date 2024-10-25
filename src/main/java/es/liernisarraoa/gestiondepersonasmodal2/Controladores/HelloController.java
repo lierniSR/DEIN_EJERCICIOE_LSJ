@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -89,6 +90,18 @@ public class HelloController implements Initializable {
     }
 
     public void eliminarPersona(ActionEvent actionEvent) {
+        Personas personaEliminar = tablaPersonas.getSelectionModel().getSelectedItem();
+        tablaPersonas.getSelectionModel().clearSelection();
+        tablaPersonas.getItems().remove(personaEliminar);
+        alertaEliminar();
+    }
+
+    private void alertaEliminar() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Persona eliminada");
+        alert.setContentText("La persona seleccionada se ha eliminado.");
+        alert.showAndWait();
     }
 
     @Override
